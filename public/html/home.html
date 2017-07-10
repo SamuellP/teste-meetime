@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Desafio Meetime</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            #container{
+                width: 1000px;
+                height: 800px;
+            }
+            
+            #listOfCars{
+                padding-left: 20px;
+                width: 500px;
+                height: 500px;
+                float: left;
+            }
+            
+            #form{
+                padding-left: 100px;
+                width: 500px;
+                height: 200px;
+                float: left;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+        <script src="home.js"></script>
+        
+        <div ng-app="AppCars" ng-controller="CtrlCars">
+            
+            <input type="text" size="150" ng-model="pipedriveToken">
+            <button ng-click="getAllClients()">CARREGAR</button>
+            
+            <p>{{clients}}</p>
+            <br><br>
+            
+            <div id="container">
+                <div id="listOfCars">
+                    <h3>Carros</h3>
+                    <table class="w3-table w3-bordered w3-striped" >
+                        <tr ng-repeat="car in cars">
+                            <td>{{ car.modelo }}</td>
+                            <td><button class="w3-btn w3-gray w3-ripple" ng-click="editCar(car.id)">&#9998; EDITAR</button><td>
+                        </tr>
+                    </table>
+                    <br>
+                    <button class="w3-btn w3-blue w3-ripple" ng-click="fillForm()">&#9998; INSERIR CARRO</button>
+                </div>
+            
+                <div id="form">
+                    <form ng-hide="hideform">
+                        <h3 ng-show="hideedit">Novo Carro:</h3>
+                        <h3 ng-hide="hideedit">Editar Carro:</h3>
+                        
+                        <label>Responsável:</label>
+                        <select ng-model="selectedClient" ng-options="x.name for x in clients.data"></select>
+                        <br><br>
+                        
+                        <label>Modelo:</label>
+                        <input class="w3-input w3-border" type="text" ng-model="carModel" placeholder="Ex: Celta">
+                        <br><br>
+                    
+                        <label>Ano:</label>
+                        <input class="w3-input w3-border" type="text" ng-model="carYear" placeholder="Ex: 2009">
+                        <br><br>
+                        
+                        <label>Cor:</label>
+                        <input class="w3-input w3-border" type="text" ng-model="carColor" placeholder="Ex: Azul">
+                        <br>
+                        
+                        <button class="w3-btn w3-blue w3-ripple" ng-show="hideedit" ng-click="saveCar()">&#10004; SALVAR</button>
+                        <button class="w3-btn w3-blue w3-ripple" ng-hide="hideedit" ng-click="saveCarEdition()">&#10004; SALVAR</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+

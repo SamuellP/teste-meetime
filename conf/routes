@@ -1,0 +1,11 @@
+
+GET     /                           controllers.HomeController.index
+POST    /api/carros                 controllers.POST.Cars.saveCar
+PUT     /api/carros                 controllers.PUT.Cars.saveCarEdition
+DELETE	/api/carros					controllers.DELETE.Cars.deleteCar(id:String)
+GET     /api/carros                 controllers.GET.Cars.getCars
+GET     /api/carro                  controllers.GET.Cars.getCar(id:String)
+GET     /home.js                    controllers.Assets.at(path="/public/javascripts", file="home.js")
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
